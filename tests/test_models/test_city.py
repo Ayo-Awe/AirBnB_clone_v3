@@ -10,6 +10,7 @@ from models import city
 from models.base_model import BaseModel
 import pep8
 import unittest
+import os
 City = city.City
 
 
@@ -59,6 +60,7 @@ class TestCityDocs(unittest.TestCase):
 
 class TestCity(unittest.TestCase):
     """Test the City class"""
+
     def test_is_subclass(self):
         """Test that City is a subclass of BaseModel"""
         city = City()
@@ -71,7 +73,7 @@ class TestCity(unittest.TestCase):
         """Test that City has attribute name, and it's an empty string"""
         city = City()
         self.assertTrue(hasattr(city, "name"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(city.name, None)
         else:
             self.assertEqual(city.name, "")
@@ -80,7 +82,7 @@ class TestCity(unittest.TestCase):
         """Test that City has attribute state_id, and it's an empty string"""
         city = City()
         self.assertTrue(hasattr(city, "state_id"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(city.state_id, None)
         else:
             self.assertEqual(city.state_id, "")

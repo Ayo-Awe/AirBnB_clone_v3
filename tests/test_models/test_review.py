@@ -10,6 +10,7 @@ from models import review
 from models.base_model import BaseModel
 import pep8
 import unittest
+import os
 Review = review.Review
 
 
@@ -59,6 +60,7 @@ class TestReviewDocs(unittest.TestCase):
 
 class TestReview(unittest.TestCase):
     """Test the Review class"""
+
     def test_is_subclass(self):
         """Test if Review is a subclass of BaseModel"""
         review = Review()
@@ -71,7 +73,7 @@ class TestReview(unittest.TestCase):
         """Test Review has attr place_id, and it's an empty string"""
         review = Review()
         self.assertTrue(hasattr(review, "place_id"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(review.place_id, None)
         else:
             self.assertEqual(review.place_id, "")
@@ -80,7 +82,7 @@ class TestReview(unittest.TestCase):
         """Test Review has attr user_id, and it's an empty string"""
         review = Review()
         self.assertTrue(hasattr(review, "user_id"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(review.user_id, None)
         else:
             self.assertEqual(review.user_id, "")
@@ -89,7 +91,7 @@ class TestReview(unittest.TestCase):
         """Test Review has attr text, and it's an empty string"""
         review = Review()
         self.assertTrue(hasattr(review, "text"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(review.text, None)
         else:
             self.assertEqual(review.text, "")

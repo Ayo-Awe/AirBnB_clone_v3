@@ -10,6 +10,7 @@ from models import state
 from models.base_model import BaseModel
 import pep8
 import unittest
+import os
 State = state.State
 
 
@@ -59,6 +60,7 @@ class TestStateDocs(unittest.TestCase):
 
 class TestState(unittest.TestCase):
     """Test the State class"""
+
     def test_is_subclass(self):
         """Test that State is a subclass of BaseModel"""
         state = State()
@@ -71,7 +73,7 @@ class TestState(unittest.TestCase):
         """Test that State has attribute name, and it's as an empty string"""
         state = State()
         self.assertTrue(hasattr(state, "name"))
-        if models.storage_t == 'db':
+        if os.environ.get("HBNB_TYPE_STORAGE") == "db":
             self.assertEqual(state.name, None)
         else:
             self.assertEqual(state.name, "")
