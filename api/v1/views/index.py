@@ -6,12 +6,12 @@ from api.v1.views import app_views
 from models import storage, classes
 
 
-@app_views.route("/status")
+@app_views.route("/status", strict_slashes=False)
 def status():
     return {"status": "OK"}
 
 
-@app_views.route("/stats")
+@app_views.route("/stats", strict_slashes=False)
 def stats():
     payload = {}
     clss = {"amenities": classes["Amenity"], "cities": classes["City"],
