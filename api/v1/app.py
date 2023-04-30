@@ -16,6 +16,11 @@ def teardown(ctx):
     storage.close()
 
 
+@app.errorhandler(404)
+def resource_not_found(error):
+    return {"error": "Not found"}
+
+
 if __name__ == "__main__":
     port = os.getenv("HBNB_API_PORT") or "0.0.0.0"
     host = os.getenv("HBNB_API_HOST") or 5000
