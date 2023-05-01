@@ -18,10 +18,10 @@ def teardown(ctx):
 
 @app.errorhandler(404)
 def resource_not_found(error):
-    return {"error": "Not found"}
+    return {"error": "Not found"}, 404
 
 
 if __name__ == "__main__":
     port = os.getenv("HBNB_API_PORT") or "0.0.0.0"
     host = os.getenv("HBNB_API_HOST") or 5000
-    app.run(host=host, port=port, threaded=True)
+    app.run(host=host, port=port, threaded=True, debug=True)
