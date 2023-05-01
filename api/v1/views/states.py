@@ -61,6 +61,7 @@ def delete_state(id):
         abort(404)
 
     storage.delete(state)
+    storage.save()
 
     return {}
 
