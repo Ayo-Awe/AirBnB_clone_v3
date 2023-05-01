@@ -116,3 +116,20 @@ class TestFileStorage(unittest.TestCase):
         with open("file.json", "r") as f:
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
+
+    @unittest.skipIf(os.environ.get("HBNB_TYPE_STORAGE") ==
+                     "db", "not testing db storage")
+    def test_count(self):
+        """Test that save properly saves objects to file.json"""
+        self.assertEqual(models.storage.count(), len(models.storage.all()))
+        self.assertEqual(models.storage.count(Amenity),
+                         len(models.storage.all(Amenity)))
+
+    @unittest.skipIf(os.environ.get("HBNB_TYPE_STORAGE") ==
+                     "db", "not testing db storage")
+    def test_get(self):
+        """Test that save properly saves objects to file.json"""
+        user = User(email="some@email.com", password="pwd")
+        user.save()
+
+        self.assertEqual(models.storage.get(User, user.id), user)
